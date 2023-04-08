@@ -1,17 +1,6 @@
 version: '3'
 
 services:
-  speedtest:
-    build: .
-    environment:
-      - INFLUXDB_HOST=influxdb
-      - INFLUXDB_PORT=8086
-      - INFLUXDB_USERNAME=myuser
-      - INFLUXDB_PASSWORD=mypassword
-      - INFLUXDB_DATABASE=mydb
-    volumes:
-      - ./speedtest.json:/speedtest.json
-
   influxdb:
     image: influxdb:latest
     ports:
@@ -24,3 +13,13 @@ services:
       - INFLUXDB_USER_PASSWORD=mypassword
     volumes:
       - ./influxdb-data:/var/lib/influxdb
+  speedtest:
+    build: .
+    environment:
+      - INFLUXDB_HOST=influxdb
+      - INFLUXDB_PORT=8086
+      - INFLUXDB_USERNAME=myuser
+      - INFLUXDB_PASSWORD=mypassword
+      - INFLUXDB_DATABASE=mydb
+    volumes:
+      - ./speedtest.json:/speedtest.json
